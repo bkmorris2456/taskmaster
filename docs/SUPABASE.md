@@ -4,7 +4,7 @@ Phase 6 implements database infrastructure only. There is no frontend Supabase c
 
 ## Tools and configuration
 
-Use the project's Node 24/npm 11 toolchain and `npm ci`. Supabase CLI **2.122.0** is pinned as a development dependency; use `npx supabase --version`. It adds no browser runtime code. A working Docker-compatible daemon and Docker Desktop WSL integration are required for the normal local stack. PostgreSQL clients (`psql`) are needed for SQL inspection; Chromium and Playwright's Linux libraries are needed for browser regressions.
+Use the project's Node 24/npm 11 toolchain and `npm ci`. Supabase CLI **2.122.0** is pinned as a development dependency; use `npx supabase --version`. It adds no browser runtime code. A working Docker-compatible daemon is required for the normal local stack. Start Docker Desktop on macOS; WSL integration applies only on Windows. PostgreSQL clients (`psql`) must be on PATH for native certification. Install the browser revision required by the pinned Playwright using `npx playwright install chromium`; Linux hosts also need its OS libraries. See [macOS baseline validation](MACOS_VALIDATION.md) for this Mac's setup and results.
 
 `supabase/config.toml` targets PostgreSQL **17**, API port 54321, database port 54322 and shadow port 54320. It exposes only public schema, caps table reads at 500, disables seeds, Realtime, Storage, Edge Runtime and Analytics, and enables email confirmation plus native TOTP enrollment/verification (maximum two factors). Local configuration does not automatically configure a hosted project's Auth settings. See the [official CLI configuration reference](https://supabase.com/docs/guides/local-development/cli/config).
 

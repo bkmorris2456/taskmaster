@@ -234,8 +234,17 @@ test('validation keeps input and draft navigation/cancellation requires explicit
   await page
     .getByRole('textbox', { name: 'Task title', exact: true })
     .fill('Draft stays');
-  page.once('dialog', (dialog) => dialog.dismiss());
+  await expect(
+    page.getByRole('button', { name: 'Create task', exact: true }),
+  ).toBeEnabled();
+  const navigationDialog = page.waitForEvent('dialog');
+  page.once('dialog', async (dialog) => {
+    await dialog.dismiss();
+  });
   await page.getByRole('link', { name: 'Date', exact: true }).click();
+  expect((await navigationDialog).message()).toBe(
+    'Leave this view and discard unsaved drafts?',
+  );
   await expect(page).toHaveURL(/\/list$/);
   await expect(
     page.getByRole('textbox', { name: 'Task title', exact: true }),
