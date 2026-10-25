@@ -1,0 +1,14 @@
+node_modules/
+dist/
+dist-local/
+coverage/
+playwright-report/
+test-results/
+.env
+.env.*
+!.env.example
+*.local
+*.tsbuildinfo
+# Supabase local runtime and linked-project state (never credentials in source).
+supabase/.temp/
+supabase/.branches/

@@ -1,0 +1,144 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-canvas: #111413;
+  --color-panel: #171b19;
+  --color-foreground: #e4ebe6;
+  --color-muted: #a1afa6;
+  --color-accent: #9bdfb5;
+  --color-error: #ffb4ab;
+  --color-line: #343e37;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    font-family: var(--font-mono);
+    color: var(--color-foreground);
+    background: var(--color-canvas);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    margin: 0;
+    min-width: 320px;
+  }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+  ::selection {
+    background: #365641;
+    color: #fff;
+  }
+}
+
+@layer components {
+  .nav-link {
+    display: flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    padding: 0.5rem 0.25rem;
+    color: var(--color-muted);
+    font-size: 0.75rem;
+    text-decoration: none;
+  }
+  .nav-link:hover {
+    background: #202822;
+    color: var(--color-foreground);
+  }
+  .nav-link[aria-current='page'] {
+    border-color: #536b5b;
+    background: #223328;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  .nav-marker {
+    visibility: hidden;
+  }
+  .nav-link[aria-current='page'] .nav-marker {
+    visibility: visible;
+  }
+  .action {
+    min-height: 44px;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #536b5b;
+    border-radius: 2px;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .action:hover {
+    background: #223328;
+  }
+  .skip-link {
+    position: fixed;
+    top: -8rem;
+    left: 1rem;
+    z-index: 10;
+    padding: 1rem;
+    background: var(--color-panel);
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+  .view-heading:focus {
+    outline: none;
+  }
+  .view-heading:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 6px;
+  }
+  @media (min-width: 768px) {
+    .nav-link {
+      justify-content: flex-start;
+      padding-inline: 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+@layer components {
+  .field {
+    min-height: 44px;
+    border: 1px solid var(--color-line);
+    border-radius: 2px;
+    padding: 0.5rem 0.75rem;
+    background: var(--color-canvas);
+    color: var(--color-foreground);
+    font-size: 0.875rem;
+  }
+  .row-action {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.5rem;
+    color: var(--color-muted);
+    font-size: 0.75rem;
+  }
+  .row-action:hover {
+    color: var(--color-accent);
+    background: #223328;
+  }
+  .action[aria-pressed='true'] {
+    background: #223328;
+    font-weight: 600;
+  }
+  button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+  }
+}

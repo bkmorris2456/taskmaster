@@ -1,0 +1,53 @@
+# Generated with Supabase CLI 2.122.0; supported config reference:
+# https://supabase.com/docs/guides/local-development/cli/config
+project_id = "taskmaster"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 500
+auto_expose_new_tables = false
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 17
+
+[db.migrations]
+enabled = true
+schema_paths = []
+
+[db.seed]
+enabled = false
+sql_paths = []
+
+[auth]
+enabled = true
+site_url = "http://127.0.0.1:5173"
+additional_redirect_urls = []
+enable_signup = true
+
+[auth.email]
+enable_signup = true
+enable_confirmations = true
+
+[auth.mfa]
+max_enrolled_factors = 2
+
+[auth.mfa.totp]
+enroll_enabled = true
+verify_enabled = true
+
+[realtime]
+enabled = false
+
+[storage]
+enabled = false
+
+[edge_runtime]
+enabled = false
+
+[analytics]
+enabled = false
